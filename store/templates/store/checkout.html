@@ -1,0 +1,64 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Nombre..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div>
+                
+                <div id="shipping-info">
+                    <hr>
+                    <p>Datos del Envío:</p>
+                    <hr>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="direccion" placeholder="Dirección..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="provincia" placeholder="Provincia..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="ciudad" placeholder="Ciudad..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="codigopostal" placeholder="Codigo Postal..">
+                    </div>
+                </div>
+
+                <hr>
+                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continuar">
+            </form>
+        </div>
+        
+        <br>
+			<div class="box-element hidden" id="payment-info">
+				<small>Paypal Options</small>
+			</div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element">
+            <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Seguir Comprando</a>
+				<hr>
+				<h3>Detalles Compra</h3>
+				<hr>
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{% static 'images/auriculares.jpeg' %}"></div>
+					<div style="flex:2"><p>Producto 1</p></div>
+					<div style="flex:1"><p>$2000.00</p></div>
+					<div style="flex:1"><p>x 2</p></div>
+				</div>
+				<h5>Items:   2</h5>
+				<h5>Total:   $2000.00</h5>
+        </div>
+    </div>
+</div>
+{% endblock content %}

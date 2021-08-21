@@ -1,0 +1,143 @@
+/*
+.color1 {color: #1d315b;}
+.color2 {color: #494179;}
+.color3 {color: #8757a0;}
+.color4 {color: #dc73cb;}
+.color5 {color: #ff98f6;}
+*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@1,300&display=swap');
+body{
+	background-color: hsl(0, 0%, 98%);
+    color: #dc73cb;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    font-family: 'Bebas Neue', cursive;
+    height: 100vh;
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+	color:#dc73cb;
+}
+
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.thumbnail{
+	width: 100%;
+	height: 350px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+
+.product{
+	border-radius: 0 0 4px 4px;
+}
+
+.bg-dark{
+	background-color: #140f09!important;
+    color: #dc73cb;
+}
+
+#cart-icon{
+	width:30px;
+    height: 30px;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+#cart-total{
+	display: block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	font-size: 14px;
+    margin-top: -10px;
+    margin-left: -4px;
+}
+
+.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
+	margin-top: 10px;
+}
+
+.btn{
+	border-radius: 0;
+}
+
+.row-image{
+	width: 100px;
+}
+
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
+}
+
+.cart-row{
+	display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.quantity{
+	display: inline-block;
+	font-weight: 700;
+	padding-right:10px;
+	
+
+}
+
+.chg-quantity{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5px;
+	transition:.1s;
+}
+
+.chg-quantity:hover{
+	opacity: .6;
+}
+
+
+.hidden{
+	display: none!important;
+}
+#login{
+    border-color: transparent;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+}
+.nav-link{
+    color: black;
+    font-size: 25px;
+}
+.navbar-brand{
+    color: rgb(170, 156, 156);
+    font-size: 25px;
+    padding: 2px;
+}
+.fa-gamepad{
+    transform: rotate(-45deg);
+}
+.footer{
+    background-color: #120d07;
+    color: #8757a0;
+    font-size: 26px;
+    letter-spacing: 4px;
+    justify-content: inline-block;
+    margin-top: -10px;
+}
