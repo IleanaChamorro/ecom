@@ -136,8 +136,8 @@ h1,h2,h3,h4,h5,h6{
 .footer{
     background-color: #120d07;
     color: #8757a0;
-    font-size: 26px;
+    font-size: 20px;
     letter-spacing: 4px;
     justify-content: inline-block;
-    margin-top: -10px;
+    margin-top: 0;
 }

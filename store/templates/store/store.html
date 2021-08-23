@@ -2,41 +2,18 @@
 {% load static %}
 {% block content%}
         <div class="row">
+            {% for product in products %}
             <div class="col-lg-4">
                 <img class="thumbnail" src="{% static 'images/auriculares.jpeg'%}" id="imageproduct">
                 <div class="box-element product">
-                    <h6><strong>Auriculares Gamer</strong></h6>
+                    <h6><strong>{{product.name}}</strong></h6>
                     <hr>
-                    <h4 style="display: inline-block;">$16.000</h4>
+                    <h4 style="display: inline-block;">${{product.price | floatformat:2}}</h4>
                     <br>
                     <button class="btn btn-outline-dark add-btn">Añadir al Carrito</button>
                     <a class="btn btn-outline-success" href="#">Ver Más</a>
                 </div>
             </div>
-
-            <div class="col-lg-4">
-                <img class="thumbnail" src="{% static 'images/motherboard.jpg'%}" id="imageproduct">
-                <div class="box-element product">
-                    <h6><strong>MotherBoard Prime Asus</strong></h6>
-                    <hr>
-                    <h4 style="display: inline-block;">$25.000</h4>
-                    <br>
-                    <button class="btn btn-outline-dark add-btn">Añadir al Carrito</button>
-                    <a class="btn btn-outline-success" href="#">Ver Más</a>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="thumbnail" src="{% static 'images/pcarmada.jpg'%}" id="imageproduct">
-                <div class="box-element product">
-                    <h6><strong>Pc Armada</strong></h6>
-                    <hr>
-                    <h4 style="display: inline-block;">$50.000</h4>
-                    <br>
-                    <button class="btn btn-outline-dark add-btn">Añadir al Carrito</button>
-                    <a class="btn btn-outline-success" href="#">Ver Más</a> 
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
 {% endblock content %}
