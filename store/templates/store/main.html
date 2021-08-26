@@ -11,7 +11,7 @@
     <script type="text/javascript">
       var user = '{{request.user}}'
 
-
+      //Token CSRF
     function getToken(name) {
       let cookieValue = null;
       if (document.cookie && document.cookie !== '') {
@@ -51,7 +51,7 @@
                <a href="{% url 'cart' %}">
                   <img  id="cart-icon" src="{% static 'images/carrito.png' %}">
               </a>
-              <p id="cart-total">0</p>
+              <p id="cart-total">{{cartItems}}</p>
   
           </div>
         </div>
