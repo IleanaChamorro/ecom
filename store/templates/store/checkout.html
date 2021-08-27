@@ -67,11 +67,12 @@
 <script type="text/javascript">
     //Funcion Datos envio
     var shipping = '{{order.shipping}}'
+    var total = '{{order.get_cart_total|floatformat:4}}'
 
     if(shipping == 'False'){
         document.getElementById('shipping-info').innerHTML = ''
     }
-    
+
     if(user != 'AnonymousUser'){
         document.getElementById('user-info').innerHTML = ''
     }
@@ -94,12 +95,37 @@
     })
 
     //Funcion Realizar Pago
-
     document.getElementById('make-payment').addEventListener('click', function(e){
         submitFormData()
     })
+
     function submitFormData(){
         console.log('Boton de pago clickeado')
+
+        var userFormData = {
+            'name': null,
+            'email': null,
+            'total': null,
+        }
+
+        var shippingInfo = {
+            'direccion': null,
+            'provincia': null,
+            'ciudad': null,
+            'codigopostal': null,
+        }
+
+        if(shipping != 'False'){
+            shippingInfo.direccion = form.direccion.value
+            shippingInfo.provincia = form.provincia.value
+            shippingInfo.ciudad = form.ciudad.value
+            shippingInfo.codigopostal = form.codigopostal.value
+        }
+
+        if(user == 'AnonymousUser'){
+            userFormData.name = form.name.value
+            userFormData.provincia = form.email.value
+        }
     }
 
     
