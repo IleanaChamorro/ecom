@@ -67,7 +67,7 @@
 <script type="text/javascript">
     //Funcion Datos envio
     var shipping = '{{order.shipping}}'
-    var total = '{{order.get_cart_total|floatformat:4}}'
+    var total = '{{order.get_cart_total}}'
 
     if(shipping == 'False'){
         document.getElementById('shipping-info').innerHTML = ''
@@ -126,6 +126,23 @@
             userFormData.name = form.name.value
             userFormData.provincia = form.email.value
         }
+
+        var url = '/process_order/'
+        fetch(url, {
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'form':userFormData, 'shipping': shippingInfo}
+            )
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Exito:', data);
+            alert('Transacción Hecha');
+            window.location.herf = "{% url 'store' %}"
+        })
     }
 
     

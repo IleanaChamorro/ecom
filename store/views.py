@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+import datetime
 
 from .models import *
 
@@ -36,6 +37,7 @@ def cart(request):
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'store/cart.html', context)
 
+#Checkout
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -51,6 +53,7 @@ def checkout(request):
     context = {'items':items, 'order':order, 'cartItems': cartItems}
     return render(request, 'store/checkout.html', context)
 
+#Agregar Item
 def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
@@ -63,7 +66,7 @@ def updateItem(request):
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-
+    #Quitar o agregar items 
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
@@ -75,3 +78,32 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item agregado', safe=False)
+
+#Proceso Pedido
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+
+    if total == float(order.get_cart_total):
+        order.complete = True
+    order.save()
+
+    if order.shipping == True:
+        ShippingAdress.objects.create(
+            customer=customer,
+            order=order,
+            direccion=data['shipping']['direccion'],
+            provincia=data['shipping']['provincia'],
+            ciudad=data['shipping']['ciudad'],
+            codigopostal=data['shipping']['codigopostal'],
+        )
+
+    else:
+        print('Usuario no loggeado')
+    return JsonResponse('Pago Realizado!', safe=False)
