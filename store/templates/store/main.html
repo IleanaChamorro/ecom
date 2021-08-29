@@ -28,7 +28,32 @@
       return cookieValue;
   }
   var csrftoken = getToken('csrftoken');
-  console.log('CSRFTOKEN:', csrftoken)
+
+  //Cookies
+  function getCookie(name){
+      //Divide el string cookie y obtiene pares individuales de name=value pairs en un array
+      var cookieArr = document.cookie.split(";");
+      //Loop por los elementos del array
+      for(var i = 0; i < cookieArr.length; i++){
+        var cookiePair = cookieArr[i].split("=");
+
+        //Remueve espacios en blanco al principio del nombre del cookie y lo compara con la cadena dada
+        if(name == cookiePair[0].trim()) {
+          //Devuelve el valor decodificado de la cookie
+          return decodeURIComponent(cookiePair[1]);
+        }
+      }
+    //En caso de no encontrar nada devuelve nulo
+      return null;
+  }
+var cart = JSON.parse(getCookie('cart'));
+if(cart == undefined){
+    cart = {}
+    console.log('Carrito fue creado')
+    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+}
+console.log('CARRITO:', cart);
+  
     </script>
     <title>Document</title>
 </head>
