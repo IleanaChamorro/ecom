@@ -79,6 +79,12 @@ def updateItem(request):
 
     return JsonResponse('Item agregado', safe=False)
 
+#TokenCsrf
+
+#from django.views.decorators.csrf import csrf_exempt
+#@csrf_exempt
+
+
 #Proceso Pedido
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
@@ -90,19 +96,19 @@ def processOrder(request):
         total = float(data['form']['total'])
         order.transaction_id = transaction_id
 
-    if total == float(order.get_cart_total):
-        order.complete = True
-    order.save()
+        if total == float(order.get_cart_total):
+            order.complete = True
+        order.save()
 
-    if order.shipping == True:
-        ShippingAdress.objects.create(
-            customer=customer,
-            order=order,
-            direccion=data['shipping']['direccion'],
-            provincia=data['shipping']['provincia'],
-            ciudad=data['shipping']['ciudad'],
-            codigopostal=data['shipping']['codigopostal'],
-        )
+        if order.shipping == True:
+            ShippingAdress.objects.create(
+                customer=customer,
+                order=order,
+                direccion=data['shipping']['direccion'],
+                provincia=data['shipping']['provincia'],
+                ciudad=data['shipping']['ciudad'],
+                codigopostal=data['shipping']['codigopostal'],
+            )
 
     else:
         print('Usuario no loggeado')
