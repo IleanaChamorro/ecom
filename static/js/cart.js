@@ -8,12 +8,36 @@ for(var i = 0; i < updateBtns.length; i++){
         console.log('Producto Id: ', productId, 'Accion: ', action)
 
         console.log('USUARIO:', user)
-        if(user === 'AnonymousUser'){
-            console.log('Sin iniciar sesión')
+        if(user == 'AnonymousUser'){
+           addCookieItem(productId, action)
         }else{
             updateUserOrder(productId, action)
         }
     })
+}
+
+//Agregar items sin el usuario estar loggeado
+function addCookieItem(productId, action){
+    console.log('Usuario no Loggeado')
+
+    if(action == 'add'){
+        if(cart[productId] == undefined){
+            cart[productId] = {'quantity':1}
+        }else{
+            cart[productId]['quantity'] += 1
+        }
+    }
+    if(action == 'remove'){
+        cart[productId]['quantity'] -= 1
+
+        if(cart[productId]['quantity'] <= 0){
+            console.log('Remover Item')
+            delete cart[productId]
+        }
+    }
+    console.log('CARRITO:', cart)
+    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain;path=/"
+    location.reload()
 }
 
 function updateUserOrder(productId, action){

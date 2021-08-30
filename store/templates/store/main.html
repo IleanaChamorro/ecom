@@ -40,8 +40,9 @@
         //Remueve espacios en blanco al principio del nombre del cookie y lo compara con la cadena dada
         if(name == cookiePair[0].trim()) {
           //Devuelve el valor decodificado de la cookie
-          return decodeURIComponent(cookiePair[1]);
-        }
+          return decodeURIComponent(cookiePair[1]
+          );
+         }
       }
     //En caso de no encontrar nada devuelve nulo
       return null;
@@ -53,7 +54,7 @@ if(cart == undefined){
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
 }
 console.log('CARRITO:', cart);
-  
+
     </script>
     <title>Document</title>
 </head>
