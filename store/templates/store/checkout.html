@@ -144,6 +144,10 @@
         .then((data) => {
             console.log('Exito:', data);
             alert('Transacción Hecha');
+
+            cart = {}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ';domain;path=/'
+
             window.location.herf = "{% url 'store' %}"
         })
     }
